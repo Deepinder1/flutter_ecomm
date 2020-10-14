@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_ecom/user/models/mybottomnavigation.dart';
+import 'package:flutter_ecom/user/splash.dart';
 import 'package:titled_navigation_bar/titled_navigation_bar.dart';
 
 void main() {
@@ -8,9 +12,21 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.amber),
-      home: HomePage(),
+      home: ScreensController(),
     ),
   );
+}
+
+class ScreensController extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    //TODO Add splash screen with logic
+    return HomePage();
+  }
 }
 
 class HomePage extends StatefulWidget {
@@ -143,16 +159,18 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       //making bottomNavigationBar
-      bottomNavigationBar: TitledBottomNavigationBar(
-        onTap: (index) {
-          print("Selected Index: $index");
-        },
-        reverse: navBarMode,
-        curve: Curves.easeInBack,
-        items: items,
-        activeColor: Colors.red,
-        inactiveColor: Colors.blueGrey,
-      ),
+      bottomNavigationBar: myBottomNavigationBar(),
+      //TODO add navigation of different screens
+      // bottomNavigationBar: TitledBottomNavigationBar(
+      //   onTap: (index) {
+      //     print("Selected Index: $index");
+      //   },
+      //   reverse: navBarMode,
+      //   curve: Curves.easeInBack,
+      //   items: items,
+      //   activeColor: Colors.red,
+      //   inactiveColor: Colors.blueGrey,
+      // ),
     );
   }
 }

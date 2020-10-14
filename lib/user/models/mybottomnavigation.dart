@@ -3,12 +3,7 @@ import 'package:flutter_ecom/main.dart';
 import 'package:titled_navigation_bar/titled_navigation_bar.dart';
 import 'package:flutter_ecom/user/helpers/navigations.dart';
 
-class MyBottomNavigation extends StatefulWidget {
-  @override
-  _MyBottomNavigationState createState() => _MyBottomNavigationState();
-}
-
-class _MyBottomNavigationState extends State<MyBottomNavigation> {
+Widget myBottomNavigationBar() {
   //creating a list of items and icons
   final List<TitledNavigationBarItem> items = [
     TitledNavigationBarItem(title: Text('Home'), icon: Icons.home),
@@ -21,20 +16,17 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
   ];
 
   bool navBarMode = false;
-  @override
-  Widget build(BuildContext context) {
-    return TitledBottomNavigationBar(
-      onTap: (index) {
-        if (index == 0) {
-          changeScreenReplacement(context, HomePage());
-        }
-        print("Selected Index: $index");
-      },
-      reverse: navBarMode,
-      curve: Curves.easeInBack,
-      items: items,
-      activeColor: Colors.red,
-      inactiveColor: Colors.blueGrey,
-    );
-  }
+  return TitledBottomNavigationBar(
+    onTap: (index) {
+      if (index == 1) {
+        print(index);
+      }
+      print("Selected Index: $index");
+    },
+    reverse: navBarMode,
+    curve: Curves.easeInBack,
+    items: items,
+    activeColor: Colors.red,
+    inactiveColor: Colors.blueGrey,
+  );
 }
