@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecom/user/helpers/style.dart';
-import 'package:flutter_ecom/widgets/loading.dart';
+import 'package:flutter_ecom/user/widgets/loading.dart';
 
 class Splash extends StatelessWidget {
   @override
