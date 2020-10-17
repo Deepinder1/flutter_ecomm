@@ -23,6 +23,7 @@ class ScreensController extends StatelessWidget {
     return HomePage();
   }
 }
+//TODO Refactor code as much possible
 
 // Start-up logo screen for the app
 // Sign in page required (user sign up and business sign up). You need to link database with user sign up and business sign up.
