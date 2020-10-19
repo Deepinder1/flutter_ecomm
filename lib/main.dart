@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_ecom/business/screens/admin.dart';
 import 'package:flutter_ecom/user/screens/home.dart';
 
 void main() {
@@ -20,7 +21,8 @@ class ScreensController extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     //TODO Add splash screen with logic
-    return HomePage();
+    return Admin();
+    // return HomePage();
   }
 }
 //TODO Refactor code as much possible
@@ -33,3 +35,46 @@ class ScreensController extends StatelessWidget {
 // Display some images (products) on home screen and when some one click the image, it will open another page describing the product.
 // On the product page, there should be a button. When someone click the button, it will popup the promo code and QR code for the product.
 // Built-in QR code reader
+
+//testing google signin
+// creating a global variable
+// final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+// final GoogleSignIn googleSignIn = GoogleSignIn();
+// class GoogleSignInScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           FlatButton(
+//             child: Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               child: Text(
+//                 'SignIn with google',
+//                 style: TextStyle(
+//                   color: Colors.white,
+//                   fontSize: 30.0,
+//                 ),
+//               ),
+//             ),
+//             onPressed: _signInWithGoogle,
+//             color: Colors.red,
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+
+//   _signInWithGoogle() async {
+//     final GoogleSignInAccount googleUser = await googleSignIn.signIn();
+//     final GoogleSignInAuthentication googleAuth =
+//         await googleUser.authentication;
+
+//     final AuthCredential credential = GoogleAuthProvider.credential(
+//         idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
+
+//     final User user =
+//         (await firebaseAuth.signInWithCredential(credential)).user;
+//   }
+// }
