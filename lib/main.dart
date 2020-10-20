@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ecom/business/screens/admin.dart';
+import 'package:flutter_ecom/user/helpers/navigations.dart';
 import 'package:flutter_ecom/user/screens/home.dart';
 
 void main() {
@@ -21,7 +22,40 @@ class ScreensController extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     //TODO Add splash screen with logic
-    return Admin();
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.red)),
+              onPressed: () {
+                changeScreen(context, Admin());
+              },
+              color: Colors.red,
+              textColor: Colors.white,
+              child: Text("Business Login".toUpperCase(),
+                  style: TextStyle(fontSize: 14)),
+            ),
+            SizedBox(height: 50),
+            RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.red)),
+              onPressed: () {
+                changeScreen(context, HomePage());
+              },
+              color: Colors.red,
+              textColor: Colors.white,
+              child: Text("User Login".toUpperCase(),
+                  style: TextStyle(fontSize: 14)),
+            ),
+          ],
+        ),
+      ),
+    );
     // return HomePage();
   }
 }

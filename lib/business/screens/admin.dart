@@ -110,7 +110,7 @@ class _AdminState extends State<Admin> {
                         title: FlatButton.icon(
                           onPressed: () {},
                           icon: Icon(Icons.category),
-                          label: Text('Categ\nories'),
+                          label: Expanded(child: Text('Categories')),
                         ),
                         subtitle: Text(
                           '23',
@@ -127,7 +127,7 @@ class _AdminState extends State<Admin> {
                         title: FlatButton.icon(
                           onPressed: () {},
                           icon: Icon(Icons.track_changes),
-                          label: Text('Prod\nucts'),
+                          label: Expanded(child: Text('Products')),
                         ),
                         subtitle: Text(
                           '120',
@@ -195,10 +195,55 @@ class _AdminState extends State<Admin> {
         );
         break;
       case Page.manage:
-        return ListView();
+        return ListView(
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.add),
+              title: Text('Add Products'),
+              onTap: () {},
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.change_history),
+              title: Text('Products List'),
+              onTap: () {},
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.add_circle),
+              title: Text('Add Category'),
+              onTap: () {
+                //TODO create _categoryAlert()
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.category),
+              title: Text('Category List'),
+              onTap: () {},
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.add_circle_outline),
+              title: Text('Add Brand'),
+              onTap: () {
+                //TODO create _brandAlert()
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.library_books),
+              title: Text('Brand list'),
+              onTap: () {},
+            ),
+            Divider(),
+          ],
+        );
         break;
       default:
         return Container();
     }
   }
+//TODO create _categoryAlert()
+//TODO create _brandAlert()
 }
