@@ -1,7 +1,5 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ecom/user/widgets/mybottomnavigation.dart';
-import 'package:titled_navigation_bar/titled_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,15 +8,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //creating a list of items and icons
-  final List<TitledNavigationBarItem> items = [
-    TitledNavigationBarItem(title: Text('Home'), icon: Icons.home),
-    TitledNavigationBarItem(
-        title: Text('Categories'),
-        icon: Icons.dashboard), //TODO add items to catigory page
-    TitledNavigationBarItem(title: Text(' Favorite'), icon: Icons.favorite),
-    TitledNavigationBarItem(title: Text('Orders'), icon: Icons.shopping_cart),
-    TitledNavigationBarItem(title: Text('Profile'), icon: Icons.person_outline),
-  ];
 
   bool navBarMode = false;
   @override
@@ -133,18 +122,6 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       //making bottomNavigationBar
-      bottomNavigationBar: myBottomNavigationBar(),
-      //TODO add navigation of different screens
-      // bottomNavigationBar: TitledBottomNavigationBar(
-      //   onTap: (index) {
-      //     print("Selected Index: $index");
-      //   },
-      //   reverse: navBarMode,
-      //   curve: Curves.easeInBack,
-      //   items: items,
-      //   activeColor: Colors.red,
-      //   inactiveColor: Colors.blueGrey,
-      // ),
     );
   }
 }

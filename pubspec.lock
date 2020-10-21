@@ -546,13 +546,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.19-nullsafety.2"
-  titled_navigation_bar:
-    dependency: "direct main"
-    description:
-      name: titled_navigation_bar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.1.0"
   transparent_image:
     dependency: "direct main"
     description:
