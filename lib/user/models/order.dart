@@ -32,7 +32,15 @@ class OrderModel {
   //public variable(list) of cart
   List cart;
 
-  // OrderModel.fromSnapshot(DocumentSnapshot snapshot) {
-  //   _id = snapshot;
-  // }
+  OrderModel.fromSnapshot(DocumentSnapshot snapshot) {
+    _id = snapshot.get(ID);
+    _description = snapshot.get(DESCRIPTION);
+    _total = snapshot.get(TOTAL);
+    _status = snapshot.get(STATUS);
+    _userId = snapshot.get(USER_ID);
+    _createdAt = snapshot.get(CREATED_AT);
+
+    //initializing public feid
+    cart = snapshot.get(CART);
+  }
 }
