@@ -176,11 +176,17 @@ class _SignUpState extends State<SignUp> {
                               child: MaterialButton(
                                 onPressed: () async {
                                   if (_formKey.currentState.validate()) {
-                                    if (!await user.signUp(_name.text,
+                                    if (await user.signUp(_name.text,
                                         _email.text, _password.text)) {
                                       _key.currentState.showSnackBar(SnackBar(
                                           content: Text('Sign Up failed')));
                                       return;
+                                      //TODO check if the commented statement works
+                                      // if (!await user.signUp(_name.text,
+                                      //     _email.text, _password.text)) {
+                                      //   _key.currentState.showSnackBar(SnackBar(
+                                      //       content: Text('Sign Up failed')));
+                                      //   return;
                                     }
                                     changeScreenReplacement(
                                         context, HomePage());

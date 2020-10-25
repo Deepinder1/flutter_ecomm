@@ -5,16 +5,29 @@ import 'package:flutter/services.dart';
 import 'package:flutter_ecom/business/screens/admin.dart';
 import 'package:flutter_ecom/user/helpers/navigations.dart';
 import 'package:flutter_ecom/user/models/product.dart';
+import 'package:flutter_ecom/user/provider/app.dart';
+import 'package:flutter_ecom/user/provider/product.dart';
+import 'package:flutter_ecom/user/provider/user.dart';
 import 'package:flutter_ecom/user/screens/home.dart';
+import 'package:flutter_ecom/user/screens/login.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.amber),
-      home: ScreensController(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: UserProvider.initialize()),
+        ChangeNotifierProvider.value(value: ProductProvider.initialize()),
+        ChangeNotifierProvider.value(value: AppProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primarySwatch: Colors.amber),
+        // home: Login(),
+        home: ScreensController(),
+      ),
     ),
   );
 }
