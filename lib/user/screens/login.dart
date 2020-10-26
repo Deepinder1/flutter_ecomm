@@ -118,7 +118,7 @@ class _LoginState extends State<Login> {
                                       if (value.isEmpty) {
                                         return "The password field cannot be empty";
                                       } else if (value.length < 6) {
-                                        return "the password has to be at least 6 characters long";
+                                        return "To be at least 6 characters long";
                                       }
                                       return null;
                                     },

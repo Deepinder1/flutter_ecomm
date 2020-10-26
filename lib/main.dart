@@ -10,6 +10,7 @@ import 'package:flutter_ecom/user/provider/product.dart';
 import 'package:flutter_ecom/user/provider/user.dart';
 import 'package:flutter_ecom/user/screens/home.dart';
 import 'package:flutter_ecom/user/screens/login.dart';
+import 'package:flutter_ecom/user/screens/splash.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -63,7 +64,7 @@ class ScreensController extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18.0),
                   side: BorderSide(color: Colors.red)),
               onPressed: () {
-                changeScreen(context, HomePage());
+                changeScreen(context, UserScreenController());
               },
               color: Colors.red,
               textColor: Colors.white,
@@ -75,6 +76,25 @@ class ScreensController extends StatelessWidget {
       ),
     );
     // return HomePage();
+  }
+}
+
+class UserScreenController extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context);
+    switch (user.status) {
+      case Status.Uninitialized:
+        return Login();
+      //TODO see if this condition uses break;
+      case Status.Unauthenticated:
+      case Status.Authenticating:
+        return Login();
+      case Status.Authenticated:
+        return HomePage();
+      default:
+        return Login();
+    }
   }
 }
 //TODO Refactor code as much possible
