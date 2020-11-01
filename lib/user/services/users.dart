@@ -15,7 +15,7 @@ class UserServices {
   }
 
   Future<UserModel> getUserById(String id) async =>
-      _firestore.collection(collection).doc(id).get().then((doc) {
+      await _firestore.collection(collection).doc(id).get().then((doc) {
         return UserModel.fromSnapshot(doc);
       });
 
