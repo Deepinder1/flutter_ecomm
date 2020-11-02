@@ -46,7 +46,15 @@ class ScreensController extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Icon(
+              Icons.shopping_bag,
+              size: 150,
+            ),
+            SizedBox(
+              height: 50,
+            ),
             RaisedButton(
+              padding: EdgeInsets.all(40),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0),
                   side: BorderSide(color: Colors.red)),
@@ -60,11 +68,12 @@ class ScreensController extends StatelessWidget {
             ),
             SizedBox(height: 50),
             RaisedButton(
+              padding: EdgeInsets.all(40),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0),
                   side: BorderSide(color: Colors.red)),
               onPressed: () {
-                changeScreen(context, UserScreenController());
+                changeScreenReplacement(context, UserScreenController());
               },
               color: Colors.red,
               textColor: Colors.white,

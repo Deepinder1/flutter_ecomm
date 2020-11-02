@@ -1,3 +1,14 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_ecom/user/models/product_model.dart';
+import 'package:flutter_ecom/user/screens/ProductPage.dart';
+import 'package:flutter_ecom/user/widgets/CategoryItem.dart';
+
+import 'cart.dart';
+import 'order.dart';
+
 import 'package:flutter_ecom/user/helpers/navigations.dart';
 import 'package:flutter_ecom/user/helpers/style.dart';
 import 'package:flutter_ecom/user/provider/product.dart';
@@ -13,39 +24,159 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:provider/provider.dart';
 
-import 'cart.dart';
-import 'order.dart';
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+//making c
   final _key = GlobalKey<ScaffoldState>();
-  ProductServices _productServices = ProductServices();
+//   ProductServices _productServices = ProductServices();
+  List bannerAdSlider = [
+    'assets/banner1.jpg',
+    'assets/banner2.jpg',
+    'assets/banner3.jpg',
+    'assets/banner4.jpg',
+    'assets/banner5.jpg',
+    'assets/banner6.jpg',
+    'assets/banner7.jpg',
+    'assets/banner8.jpg',
+  ];
+
+  List<Product> products = [
+    Product(
+        image: 'assets/product1.jpg',
+        description:
+            'A earum praesentium voluptates nemo fugit. Repudiandae velit ea at et dolorum quisquam eius. Doloremque molestias rerum repellat ad. Et consequatur aspernatur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
+        price: '100/-',
+        productName: 'iPad Mini'),
+    Product(
+        image: 'assets/product2.jpg',
+        description:
+            'A earum praesentium voluptates nemo fugit. Repudiandae velit ea at et dolorum quisquam eius. Doloremque molestias rerum repellat ad. Et consequatur aspernatur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
+        price: '100/-',
+        productName: 'iPad Pro'),
+    Product(
+        image: 'assets/product3.jpg',
+        description:
+            'A earum praesentium voluptates nemo fugit. Repudiandae velit ea at et dolorum quisquam eius. Doloremque molestias rerum repellat ad. Et consequatur aspernatur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
+        price: '100/-',
+        productName: 'iPhone Pro Max'),
+    Product(
+        image: 'assets/product4.jpg',
+        description:
+            'A earum praesentium voluptates nemo fugit. Repudiandae velit ea at et dolorum quisquam eius. Doloremque molestias rerum repellat ad. Et consequatur aspernatur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
+        price: '100/-',
+        productName: 'Apple Watch 3'),
+    Product(
+        image: 'assets/product5.jpg',
+        description:
+            'A earum praesentium voluptates nemo fugit. Repudiandae velit ea at et dolorum quisquam eius. Doloremque molestias rerum repellat ad. Et consequatur aspernatur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
+        price: '100/-',
+        productName: 'Apple Watch 4'),
+    Product(
+        image: 'assets/product6.jpg',
+        description:
+            'A earum praesentium voluptates nemo fugit. Repudiandae velit ea at et dolorum quisquam eius. Doloremque molestias rerum repellat ad. Et consequatur aspernatur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
+        price: '100/-',
+        productName: 'Macbook pro 16inch'),
+    Product(
+        image: 'assets/product7.jpg',
+        description:
+            'A earum praesentium voluptates nemo fugit. Repudiandae velit ea at et dolorum quisquam eius. Doloremque molestias rerum repellat ad. Et consequatur aspernatur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
+        price: '100/-',
+        productName: 'Macbook Pro'),
+    Product(
+        image: 'assets/product8.jpg',
+        description:
+            'A earum praesentium voluptates nemo fugit. Repudiandae velit ea at et dolorum quisquam eius. Doloremque molestias rerum repellat ad. Et consequatur aspernatur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
+        price: '100/-',
+        productName: 'iMac 4'),
+    Product(
+        image: 'assets/product9.jpg',
+        description:
+            'A earum praesentium voluptates nemo fugit. Repudiandae velit ea at et dolorum quisquam eius. Doloremque molestias rerum repellat ad. Et consequatur aspernatur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
+        price: '100/-',
+        productName: 't-Shirts'),
+    Product(
+        image: 'assets/product10.jpg',
+        description:
+            'A earum praesentium voluptates nemo fugit. Repudiandae velit ea at et dolorum quisquam eius. Doloremque molestias rerum repellat ad. Et consequatur aspernatur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
+        price: '100/-',
+        productName: 'Ethnic Wear - Dresses'),
+    Product(
+        image: 'assets/product11.jpg',
+        description:
+            'A earum praesentium voluptates nemo fugit. Repudiandae velit ea at et dolorum quisquam eius. Doloremque molestias rerum repellat ad. Et consequatur aspernatur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
+        price: '100/-',
+        productName: 'Dresses'),
+    Product(
+        image: 'assets/product12.jpg',
+        description:
+            'A earum praesentium voluptates nemo fugit. Repudiandae velit ea at et dolorum quisquam eius. Doloremque molestias rerum repellat ad. Et consequatur aspernatur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
+        price: '100/-',
+        productName: 't-Shirts'),
+  ];
 
   @override
   Widget build(BuildContext context) {
+    //providers
     final userProvider = Provider.of<UserProvider>(context);
-    final productProvider = Provider.of<ProductProvider>(context);
+    // final productProvider = Provider.of<ProductProvider>(context);
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ));
 
     return Scaffold(
       key: _key,
-      backgroundColor: white,
-      endDrawer: Drawer(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'E-Com',
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.white,
+        brightness: Brightness.light,
+        elevation: 0,
+        actionsIconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            icon: Icon(EvaIcons.shoppingBagOutline),
+          )
+        ],
+      ),
+
+      //drawer
+      drawer: Drawer(
         child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: black),
+              currentAccountPicture: CircleAvatar(
+                child: Icon(
+                  Icons.person,
+                  size: 50,
+                ),
+                backgroundColor: white,
+              ),
               accountName: CustomText(
-                text: userProvider.userModel?.name ?? "username lading...",
+                text: userProvider.userModel?.name ?? "user",
                 color: white,
                 weight: FontWeight.bold,
                 size: 18,
               ),
               accountEmail: CustomText(
-                text: userProvider.userModel?.email ?? "email loading...",
+                text: userProvider.userModel?.email ?? " ",
                 color: white,
               ),
             ),
@@ -68,147 +199,412 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: SafeArea(
-        child: ListView(
-          children: <Widget>[
-//           Custom App bar
-            Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 10,
-                  right: 20,
-                  child: Align(
-                      alignment: Alignment.topRight,
-                      child: GestureDetector(
-                          onTap: () {
-                            _key.currentState.openEndDrawer();
-                          },
-                          child: Icon(Icons.menu))),
-                ),
-                Positioned(
-                  top: 10,
-                  right: 60,
-                  child: Align(
-                      alignment: Alignment.topRight,
-                      child: GestureDetector(
-                          onTap: () {
-                            changeScreen(context, CartScreen());
-                          },
-                          child: Icon(Icons.shopping_cart))),
-                ),
-                Positioned(
-                  top: 10,
-                  right: 100,
-                  child: Align(
-                      alignment: Alignment.topRight,
-                      child: GestureDetector(
-                          onTap: () {
-                            _key.currentState.showSnackBar(
-                                SnackBar(content: Text("User profile")));
-                          },
-                          child: Icon(Icons.person))),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'What are\nyou Shopping for?',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.black.withOpacity(0.6),
-                        fontWeight: FontWeight.w400),
+      body: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Categories',
+                  style: TextStyle(
+                    fontSize: 18,
                   ),
                 ),
-              ],
-            ),
-
-//          Search Text field
-//            Search(),
-
-            // Container(
-            //   decoration: BoxDecoration(
-            //       color: white,
-            //       borderRadius: BorderRadius.only(
-            //           bottomRight: Radius.circular(20),
-            //           bottomLeft: Radius.circular(20))),
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(
-            //         top: 8, left: 8, right: 8, bottom: 10),
-            //     child: Container(
-            //       decoration: BoxDecoration(
-            //         color: grey.withOpacity(0.2),
-            //         borderRadius: BorderRadius.circular(20),
-            //       ),
-            //       child: ListTile(
-            //         leading: Icon(
-            //           Icons.search,
-            //           color: black,
-            //         ),
-            //         title: TextField(
-            //           textInputAction: TextInputAction.search,
-            //           onSubmitted: (pattern)async{
-            //             await productProvider.search(productName: pattern);
-            //             changeScreen(context, ProductSearchScreen());
-            //           },
-            //           decoration: InputDecoration(
-            //             hintText: "blazer, dress...",
-            //             border: InputBorder.none,
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-
-//            featured products
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(14.0),
-                  child: Container(
-                      alignment: Alignment.centerLeft,
-                      child: new Text('Featured products')),
+              ),
+              SizedBox(
+                height: 70,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  children: <Widget>[
+                    CategoryItem(
+                      icon: EvaIcons.giftOutline,
+                      size: 70,
+                      margin: EdgeInsets.only(
+                        left: 10,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      backgroundColor: Color(0xFFffa100),
+                    ),
+                    CategoryItem(
+                      icon: EvaIcons.headphonesOutline,
+                      size: 70,
+                      margin: EdgeInsets.only(
+                        left: 10,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      backgroundColor: Color(0xFF200bfff),
+                    ),
+                    CategoryItem(
+                      icon: EvaIcons.hardDriveOutline,
+                      size: 70,
+                      margin: EdgeInsets.only(
+                        left: 10,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      backgroundColor: Color(0xFFff91c90),
+                    ),
+                    CategoryItem(
+                      icon: EvaIcons.printerOutline,
+                      size: 70,
+                      margin: EdgeInsets.only(
+                        left: 10,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      backgroundColor: Color(0xFF9120de),
+                    ),
+                    CategoryItem(
+                      icon: EvaIcons.videoOffOutline,
+                      size: 70,
+                      margin: EdgeInsets.only(
+                        left: 10,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      backgroundColor: Color(0xFF17e6a9),
+                    ),
+                    CategoryItem(
+                      icon: EvaIcons.umbrellaOutline,
+                      size: 70,
+                      margin: EdgeInsets.only(
+                        left: 10,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      backgroundColor: Color(0xFFff788e),
+                    ),
+                    CategoryItem(
+                      icon: EvaIcons.tvOutline,
+                      size: 70,
+                      margin: EdgeInsets.only(
+                        left: 10,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      backgroundColor: Color(0xFFff8176),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            FeaturedProducts(),
+              ),
 
-//          recent products
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(14.0),
-                  child: Container(
-                      alignment: Alignment.centerLeft,
-                      child: new Text('Recent products')),
+              SizedBox(height: 30),
+
+              //banner ad Slider
+
+              CarouselSlider(
+                options: CarouselOptions(
+                  aspectRatio: 16 / 9,
+                  autoPlay: true,
                 ),
-              ],
-            ),
+                items: bannerAdSlider.map(
+                  (i) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: EdgeInsets.symmetric(horizontal: 10.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image(
+                              image: AssetImage(i),
+                              fit: BoxFit.cover,
+                              alignment: Alignment.topCenter,
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ).toList(),
+              ),
 
-            Column(
-              children: productProvider.products
-                  .map((item) => GestureDetector(
-                        child: ProductCard(
-                          product: item,
+              //banner ad Slider
+
+              SizedBox(
+                height: 20,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Products',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+
+              SizedBox(
+                height: 20,
+              ),
+
+              GridView.count(
+                physics: ClampingScrollPhysics(),
+                crossAxisCount: 2,
+                shrinkWrap: true,
+                childAspectRatio: 1 / 1.25,
+                children: products.map((product) {
+                  return Stack(
+                    children: <Widget>[
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+                            Hero(
+                              tag: product.image,
+                              child: AspectRatio(
+                                aspectRatio: 1 / 1,
+                                child: Image(
+                                  image: AssetImage(product.image),
+                                ),
+                              ),
+                            ),
+                            Text(product.productName),
+                            Text(
+                              '${product.price}',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.purpleAccent),
+                            ),
+                          ],
                         ),
-                      ))
-                  .toList(),
-            )
-          ],
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ProductPage(
+                                    product: product,
+                                  ),
+                                ));
+                          },
+                        ),
+                      )
+                    ],
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-//Row(
-//mainAxisAlignment: MainAxisAlignment.end,
-//children: <Widget>[
-//GestureDetector(
-//onTap: (){
-//key.currentState.openDrawer();
-//},
-//child: Icon(Icons.menu))
-//],
-//),
+
+//expand home page as the project expands with firestore
+
+// import 'package:flutter_ecom/user/helpers/navigations.dart';
+// import 'package:flutter_ecom/user/helpers/style.dart';
+// import 'package:flutter_ecom/user/provider/product.dart';
+// import 'package:flutter_ecom/user/provider/user.dart';
+// import 'package:flutter_ecom/user/screens/login.dart';
+// import 'package:flutter_ecom/user/screens/product_search.dart';
+// import 'package:flutter_ecom/user/services/product.dart';
+// import 'package:flutter_ecom/user/widgets/custom_text.dart';
+// import 'package:flutter_ecom/user/widgets/featured_products.dart';
+// import 'package:flutter_ecom/user/widgets/product_card.dart';
+// import 'package:flutter_ecom/user/widgets/search.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_typeahead/flutter_typeahead.dart';
+// import 'package:provider/provider.dart';
+
+// import 'cart.dart';
+// import 'order.dart';
+
+// class HomePage extends StatefulWidget {
+//   @override
+//   _HomePageState createState() => _HomePageState();
+// }
+
+// class _HomePageState extends State<HomePage> {
+//   final _key = GlobalKey<ScaffoldState>();
+//   ProductServices _productServices = ProductServices();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final userProvider = Provider.of<UserProvider>(context);
+//     final productProvider = Provider.of<ProductProvider>(context);
+
+//     return Scaffold(
+//       key: _key,
+//       backgroundColor: white,
+//       endDrawer: Drawer(
+//         child: ListView(
+//           children: <Widget>[
+//             UserAccountsDrawerHeader(
+//               decoration: BoxDecoration(color: black),
+//               accountName: CustomText(
+//                 text: userProvider.userModel?.name ?? "username lading...",
+//                 color: white,
+//                 weight: FontWeight.bold,
+//                 size: 18,
+//               ),
+//               accountEmail: CustomText(
+//                 text: userProvider.userModel?.email ?? "email loading...",
+//                 color: white,
+//               ),
+//             ),
+//             ListTile(
+//               onTap: () async {
+//                 await userProvider.getOrders();
+//                 changeScreen(context, OrdersScreen());
+//               },
+//               leading: Icon(Icons.bookmark_border),
+//               title: CustomText(text: "My orders"),
+//             ),
+//             ListTile(
+//               onTap: () async {
+//                 await userProvider.signOut();
+//                 changeScreenReplacement(context, Login());
+//               },
+//               leading: Icon(Icons.exit_to_app),
+//               title: CustomText(text: "Log out"),
+//             ),
+//           ],
+//         ),
+//       ),
+//       body: SafeArea(
+//         child: ListView(
+//           children: <Widget>[
+// //           Custom App bar
+//             Stack(
+//               children: <Widget>[
+//                 Positioned(
+//                   top: 10,
+//                   right: 20,
+//                   child: Align(
+//                       alignment: Alignment.topRight,
+//                       child: GestureDetector(
+//                           onTap: () {
+//                             _key.currentState.openEndDrawer();
+//                           },
+//                           child: Icon(Icons.menu))),
+//                 ),
+//                 Positioned(
+//                   top: 10,
+//                   right: 60,
+//                   child: Align(
+//                       alignment: Alignment.topRight,
+//                       child: GestureDetector(
+//                           onTap: () {
+//                             changeScreen(context, CartScreen());
+//                           },
+//                           child: Icon(Icons.shopping_cart))),
+//                 ),
+//                 Positioned(
+//                   top: 10,
+//                   right: 100,
+//                   child: Align(
+//                       alignment: Alignment.topRight,
+//                       child: GestureDetector(
+//                           onTap: () {
+//                             _key.currentState.showSnackBar(
+//                                 SnackBar(content: Text("User profile")));
+//                           },
+//                           child: Icon(Icons.person))),
+//                 ),
+//                 Padding(
+//                   padding: const EdgeInsets.all(8.0),
+//                   child: Text(
+//                     'What are\nyou Shopping for?',
+//                     style: TextStyle(
+//                         fontSize: 30,
+//                         color: Colors.black.withOpacity(0.6),
+//                         fontWeight: FontWeight.w400),
+//                   ),
+//                 ),
+//               ],
+//             ),
+
+// //          Search Text field
+// //            Search(),
+
+//             // Container(
+//             //   decoration: BoxDecoration(
+//             //       color: white,
+//             //       borderRadius: BorderRadius.only(
+//             //           bottomRight: Radius.circular(20),
+//             //           bottomLeft: Radius.circular(20))),
+//             //   child: Padding(
+//             //     padding: const EdgeInsets.only(
+//             //         top: 8, left: 8, right: 8, bottom: 10),
+//             //     child: Container(
+//             //       decoration: BoxDecoration(
+//             //         color: grey.withOpacity(0.2),
+//             //         borderRadius: BorderRadius.circular(20),
+//             //       ),
+//             //       child: ListTile(
+//             //         leading: Icon(
+//             //           Icons.search,
+//             //           color: black,
+//             //         ),
+//             //         title: TextField(
+//             //           textInputAction: TextInputAction.search,
+//             //           onSubmitted: (pattern)async{
+//             //             await productProvider.search(productName: pattern);
+//             //             changeScreen(context, ProductSearchScreen());
+//             //           },
+//             //           decoration: InputDecoration(
+//             //             hintText: "blazer, dress...",
+//             //             border: InputBorder.none,
+//             //           ),
+//             //         ),
+//             //       ),
+//             //     ),
+//             //   ),
+//             // ),
+
+// //            featured products
+//             Row(
+//               children: <Widget>[
+//                 Padding(
+//                   padding: const EdgeInsets.all(14.0),
+//                   child: Container(
+//                       alignment: Alignment.centerLeft,
+//                       child: new Text('Featured products')),
+//                 ),
+//               ],
+//             ),
+//             FeaturedProducts(),
+
+// //          recent products
+//             Row(
+//               children: <Widget>[
+//                 Padding(
+//                   padding: const EdgeInsets.all(14.0),
+//                   child: Container(
+//                       alignment: Alignment.centerLeft,
+//                       child: new Text('Recent products')),
+//                 ),
+//               ],
+//             ),
+
+//             Column(
+//               children: productProvider.products
+//                   .map((item) => GestureDetector(
+//                         child: ProductCard(
+//                           product: item,
+//                         ),
+//                       ))
+//                   .toList(),
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+// //Row(
+// //mainAxisAlignment: MainAxisAlignment.end,
+// //children: <Widget>[
+// //GestureDetector(
+// //onTap: (){
+// //key.currentState.openDrawer();
+// //},
+// //child: Icon(Icons.menu))
+// //],
+// //),
 
 //old HomePage
 
