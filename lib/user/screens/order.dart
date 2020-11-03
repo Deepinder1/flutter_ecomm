@@ -1,7 +1,9 @@
+import 'package:flutter_ecom/user/helpers/navigations.dart';
 import 'package:flutter_ecom/user/helpers/style.dart';
 import 'package:flutter_ecom/user/models/order.dart';
 import 'package:flutter_ecom/user/provider/app.dart';
 import 'package:flutter_ecom/user/provider/user.dart';
+import 'package:flutter_ecom/user/screens/home.dart';
 import 'package:flutter_ecom/user/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +21,7 @@ class OrdersScreen extends StatelessWidget {
         leading: IconButton(
             icon: Icon(Icons.close),
             onPressed: () {
-              Navigator.pop(context);
+              changeScreenReplacement(context, HomePage());
             }),
       ),
       backgroundColor: white,

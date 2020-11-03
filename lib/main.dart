@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ecom/business/screens/admin.dart';
+import 'package:flutter_ecom/business/screens/signup.dart';
 import 'package:flutter_ecom/user/helpers/navigations.dart';
 import 'package:flutter_ecom/user/models/product.dart';
 import 'package:flutter_ecom/user/provider/app.dart';
@@ -12,6 +14,7 @@ import 'package:flutter_ecom/user/screens/home.dart';
 import 'package:flutter_ecom/user/screens/login.dart';
 import 'package:flutter_ecom/user/screens/splash.dart';
 import 'package:provider/provider.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,7 +51,7 @@ class ScreensController extends StatelessWidget {
           children: [
             Icon(
               Icons.shopping_bag,
-              size: 150,
+              size: 100,
             ),
             SizedBox(
               height: 50,
@@ -59,7 +62,7 @@ class ScreensController extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18.0),
                   side: BorderSide(color: Colors.red)),
               onPressed: () {
-                changeScreen(context, Admin());
+                changeScreen(context, AdminScreenController());
               },
               color: Colors.red,
               textColor: Colors.white,
@@ -85,6 +88,26 @@ class ScreensController extends StatelessWidget {
       ),
     );
     // return HomePage();
+  }
+}
+
+class AdminScreenController extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    User result = FirebaseAuth.instance.currentUser;
+    return new SplashScreen(
+      navigateAfterSeconds: result != null ? Admin() : SignUp(),
+      seconds: 1,
+      title: new Text(
+        'Welcome The Business Admin!',
+        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+      ),
+      backgroundColor: Colors.white,
+      styleTextUnderTheLoader: new TextStyle(),
+      photoSize: 100.0,
+      onClick: () => print("flutter"),
+      loaderColor: Colors.red,
+    );
   }
 }
 

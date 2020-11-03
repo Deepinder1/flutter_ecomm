@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecom/business/screens/signup.dart';
 
 enum Page { dashboard, manage }
 
@@ -235,6 +237,20 @@ class _AdminState extends State<Admin> {
               leading: Icon(Icons.library_books),
               title: Text('Brand list'),
               onTap: () {},
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.library_books),
+              title: Text('Log Out'),
+              onTap: () {
+                FirebaseAuth auth = FirebaseAuth.instance;
+                auth.signOut().then((res) {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignUp()),
+                      (Route<dynamic> route) => false);
+                });
+              },
             ),
             Divider(),
           ],

@@ -3,7 +3,8 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecom/user/models/product_model.dart';
-import 'package:flutter_ecom/user/services/qr_code.dart';
+import 'package:flutter_ecom/user/screens/promo.dart';
+import 'package:flutter_ecom/user/screens/qr_code.dart';
 
 class ProductPage extends StatelessWidget {
   final Product product;
@@ -74,8 +75,8 @@ class ProductPage extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                       child: OutlineButton.icon(
-                        icon: Icon(EvaIcons.star),
-                        label: Text('Promo'),
+                        icon: Icon(Icons.qr_code),
+                        label: Text('QR'),
                         onPressed: () {
                           Navigator.push(
                               context,
@@ -91,9 +92,12 @@ class ProductPage extends StatelessWidget {
                       child: RaisedButton.icon(
                         textColor: Colors.black,
                         color: Colors.amber,
-                        icon: Icon(EvaIcons.creditCard),
-                        label: Text('Buy Now'),
-                        onPressed: () {},
+                        icon: Icon(EvaIcons.star),
+                        label: Text('Promo'),
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Promo()));
+                        },
                       ),
                     ),
                   ],

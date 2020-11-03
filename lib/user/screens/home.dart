@@ -4,23 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ecom/user/models/product_model.dart';
 import 'package:flutter_ecom/user/screens/ProductPage.dart';
+import 'package:flutter_ecom/user/screens/cart.dart';
+import 'package:flutter_ecom/user/screens/categories.dart';
+import 'package:flutter_ecom/user/screens/qr_screen.dart';
 import 'package:flutter_ecom/user/widgets/CategoryItem.dart';
 
-import 'cart.dart';
 import 'order.dart';
 
 import 'package:flutter_ecom/user/helpers/navigations.dart';
 import 'package:flutter_ecom/user/helpers/style.dart';
-import 'package:flutter_ecom/user/provider/product.dart';
 import 'package:flutter_ecom/user/provider/user.dart';
 import 'package:flutter_ecom/user/screens/login.dart';
-import 'package:flutter_ecom/user/screens/product_search.dart';
-import 'package:flutter_ecom/user/services/product.dart';
 import 'package:flutter_ecom/user/widgets/custom_text.dart';
-import 'package:flutter_ecom/user/widgets/featured_products.dart';
-import 'package:flutter_ecom/user/widgets/product_card.dart';
-import 'package:flutter_ecom/user/widgets/search.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +25,106 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-//making c
+//bottom navigation bar
+  PageController _myPage;
+  var selectedPage;
+
+  @override
+  void initState() {
+    super.initState();
+    _myPage = PageController(initialPage: 1);
+    selectedPage = 1;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: PageView(
+        physics: NeverScrollableScrollPhysics(),
+        controller: _myPage,
+        children: <Widget>[
+          OrdersScreen(),
+          HomePageScreen(),
+          QRViewExample(),
+          CategoriesScreen(),
+          CartScreen(),
+          OrdersScreen(),
+        ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.home),
+              color: selectedPage == 1 ? Colors.blue : Colors.grey,
+              onPressed: () {
+                _myPage.jumpToPage(1);
+                setState(() {
+                  selectedPage = 1;
+                });
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.qr_code),
+              color: selectedPage == 2 ? Colors.blue : Colors.grey,
+              onPressed: () {
+                _myPage.jumpToPage(2);
+                setState(() {
+                  selectedPage = 2;
+                });
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.category,
+              ),
+              color: selectedPage == 3 ? Colors.blue : Colors.grey,
+              onPressed: () {
+                _myPage.jumpToPage(3);
+                setState(() {
+                  selectedPage = 3;
+                });
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.shopping_bag_outlined,
+              ),
+              color: selectedPage == 4 ? Colors.blue : Colors.grey,
+              onPressed: () {
+                _myPage.jumpToPage(4);
+                setState(() {
+                  selectedPage = 4;
+                });
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.shopping_basket_outlined,
+              ),
+              color: selectedPage == 5 ? Colors.blue : Colors.grey,
+              onPressed: () {
+                _myPage.jumpToPage(5);
+                setState(() {
+                  selectedPage = 5;
+                });
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomePageScreen extends StatefulWidget {
+  @override
+  _HomePageScreenState createState() => _HomePageScreenState();
+}
+
+class _HomePageScreenState extends State<HomePageScreen> {
+  //making key
   final _key = GlobalKey<ScaffoldState>();
 //   ProductServices _productServices = ProductServices();
   List bannerAdSlider = [
@@ -190,6 +284,14 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               onTap: () async {
+                await userProvider.getOrders();
+                changeScreen(context, QRViewExample());
+              },
+              leading: Icon(Icons.qr_code_outlined),
+              title: CustomText(text: "QR code"),
+            ),
+            ListTile(
+              onTap: () async {
                 await userProvider.signOut();
                 changeScreenReplacement(context, Login());
               },
@@ -219,68 +321,89 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   children: <Widget>[
-                    CategoryItem(
-                      icon: EvaIcons.giftOutline,
-                      size: 70,
-                      margin: EdgeInsets.only(
-                        left: 10,
+                    InkWell(
+                      onTap: () {},
+                      child: CategoryItem(
+                        icon: EvaIcons.giftOutline,
+                        size: 70,
+                        margin: EdgeInsets.only(
+                          left: 10,
+                        ),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFFffa100),
                       ),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFFffa100),
                     ),
-                    CategoryItem(
-                      icon: EvaIcons.headphonesOutline,
-                      size: 70,
-                      margin: EdgeInsets.only(
-                        left: 10,
+                    InkWell(
+                      onTap: () {},
+                      child: CategoryItem(
+                        icon: EvaIcons.headphonesOutline,
+                        size: 70,
+                        margin: EdgeInsets.only(
+                          left: 10,
+                        ),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFF200bfff),
                       ),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFF200bfff),
                     ),
-                    CategoryItem(
-                      icon: EvaIcons.hardDriveOutline,
-                      size: 70,
-                      margin: EdgeInsets.only(
-                        left: 10,
+                    InkWell(
+                      onTap: () {},
+                      child: CategoryItem(
+                        icon: EvaIcons.hardDriveOutline,
+                        size: 70,
+                        margin: EdgeInsets.only(
+                          left: 10,
+                        ),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFFff91c90),
                       ),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFFff91c90),
                     ),
-                    CategoryItem(
-                      icon: EvaIcons.printerOutline,
-                      size: 70,
-                      margin: EdgeInsets.only(
-                        left: 10,
+                    InkWell(
+                      onTap: () {},
+                      child: CategoryItem(
+                        icon: EvaIcons.printerOutline,
+                        size: 70,
+                        margin: EdgeInsets.only(
+                          left: 10,
+                        ),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFF9120de),
                       ),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFF9120de),
                     ),
-                    CategoryItem(
-                      icon: EvaIcons.videoOffOutline,
-                      size: 70,
-                      margin: EdgeInsets.only(
-                        left: 10,
+                    InkWell(
+                      onTap: () {},
+                      child: CategoryItem(
+                        icon: EvaIcons.videoOffOutline,
+                        size: 70,
+                        margin: EdgeInsets.only(
+                          left: 10,
+                        ),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFF17e6a9),
                       ),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFF17e6a9),
                     ),
-                    CategoryItem(
-                      icon: EvaIcons.umbrellaOutline,
-                      size: 70,
-                      margin: EdgeInsets.only(
-                        left: 10,
+                    InkWell(
+                      onTap: () {},
+                      child: CategoryItem(
+                        icon: EvaIcons.umbrellaOutline,
+                        size: 70,
+                        margin: EdgeInsets.only(
+                          left: 10,
+                        ),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFFff788e),
                       ),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFFff788e),
                     ),
-                    CategoryItem(
-                      icon: EvaIcons.tvOutline,
-                      size: 70,
-                      margin: EdgeInsets.only(
-                        left: 10,
+                    InkWell(
+                      onTap: () {},
+                      child: CategoryItem(
+                        icon: EvaIcons.tvOutline,
+                        size: 70,
+                        margin: EdgeInsets.only(
+                          left: 10,
+                        ),
+                        padding: EdgeInsets.all(10),
+                        backgroundColor: Color(0xFFff8176),
                       ),
-                      padding: EdgeInsets.all(10),
-                      backgroundColor: Color(0xFFff8176),
                     ),
                   ],
                 ),
