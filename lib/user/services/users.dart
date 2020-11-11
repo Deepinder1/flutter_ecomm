@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_ecom/user/models/cart_item.dart';
 import 'package:flutter_ecom/user/models/user.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 //TODO these all functions in the class may require Future<void>  as the second function so checkit
 

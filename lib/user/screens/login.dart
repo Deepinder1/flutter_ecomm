@@ -21,12 +21,10 @@ class _LoginState extends State<Login> {
   TextEditingController _password = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    //TODO see if listen : false have to be set in this provider
     final user = Provider.of<UserProvider>(context);
 
     return Scaffold(
       key: _key,
-      // TODO instead of Loading put Splash() screen also
       body: user.status == Status.Authenticating
           ? Loading()
           : Stack(

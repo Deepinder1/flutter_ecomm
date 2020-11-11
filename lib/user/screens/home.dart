@@ -211,6 +211,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
             'A earum praesentium voluptates nemo fugit. Repudiandae velit ea at et dolorum quisquam eius. Doloremque molestias rerum repellat ad. Et consequatur aspernatur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
         price: '100/-',
         productName: 't-Shirts'),
+    Product(
+        image: 'assets/download.jpeg',
+        description:
+            'This is the demo content  atur sed et magni. Sit maiores officiis quos quibusdam voluptas. Et quis et veniam dolores possimus.',
+        price: '500/-',
+        productName: 'mobiles'),
   ];
 
   @override
