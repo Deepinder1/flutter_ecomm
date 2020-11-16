@@ -199,17 +199,6 @@ class _AdminState extends State<Admin> {
       case Page.manage:
         return ListView(
           children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.add),
-              title: Text('Add Products'),
-              onTap: () {},
-            ),
-            Divider(),
-            ListTile(
-              leading: Icon(Icons.change_history),
-              title: Text('Products List'),
-              onTap: () {},
-            ),
             Divider(),
             ListTile(
               leading: Icon(Icons.add_circle),
@@ -220,23 +209,11 @@ class _AdminState extends State<Admin> {
             ),
             Divider(),
             ListTile(
-              leading: Icon(Icons.category),
-              title: Text('Category List'),
-              onTap: () {},
-            ),
-            Divider(),
-            ListTile(
               leading: Icon(Icons.add_circle_outline),
-              title: Text('Add Brand'),
+              title: Text('Add Product'),
               onTap: () {
-                //TODO create _brandAlert()
+                //TODO create _productAlert()
               },
-            ),
-            Divider(),
-            ListTile(
-              leading: Icon(Icons.library_books),
-              title: Text('Brand list'),
-              onTap: () {},
             ),
             Divider(),
             ListTile(
@@ -261,5 +238,5 @@ class _AdminState extends State<Admin> {
     }
   }
 //TODO create _categoryAlert()
-//TODO create _brandAlert()
+//TODO create _productAlert()
 }
