@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecom/business/db/category.dart';
 import 'package:flutter_ecom/business/screens/signup.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 enum Page { dashboard, manage }
 
@@ -17,9 +19,9 @@ class _AdminState extends State<Admin> {
   TextEditingController brandController = TextEditingController();
   GlobalKey<FormState> _categoryFormKey = GlobalKey();
   GlobalKey<FormState> _brandFormKey = GlobalKey();
+  CategoryService _categoryService = CategoryService();
   //TODO add this database models
   // BrandService _brandService = BrandService();
-  // CategoryService _categoryService = CategoryService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -237,6 +239,39 @@ class _AdminState extends State<Admin> {
         return Container();
     }
   }
-//TODO create _categoryAlert()
-//TODO create _productAlert()
+
+  void _categoryAlert() {
+    var alert = new AlertDialog(
+      content: Form(
+        key: _categoryFormKey,
+        child: TextFormField(
+          controller: categoryController,
+          validator: (value) {
+            if (value.isEmpty) {
+              return 'category cannot be empty';
+            }
+          },
+          decoration: InputDecoration(hintText: "add category"),
+        ),
+      ),
+      actions: <Widget>[
+        FlatButton(
+            onPressed: () {
+              if (categoryController.text != null) {
+                _categoryService.createCategory(categoryController.text);
+              }
+              Fluttertoast.showToast(msg: 'category created');
+              Navigator.pop(context);
+            },
+            child: Text('ADD')),
+        FlatButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text('CANCEL')),
+      ],
+    );
+
+    showDialog(context: context, builder: (_) => alert);
+  } //TODO create _productAlert()
 }
