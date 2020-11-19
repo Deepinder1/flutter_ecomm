@@ -33,19 +33,19 @@ class UserModel {
 
   //customized constructor
   UserModel.fromSnapshot(DocumentSnapshot snapshot) {
-    _name = snapshot.get(NAME);
-    _email = snapshot.get(EMAIL);
-    _id = snapshot.get(ID);
-    _stripeId = snapshot.get(STRIPE_ID) ?? '';
+    _name = snapshot.data()[NAME];
+    _email = snapshot.data()[EMAIL];
+    _id = snapshot.data()[ID];
+    _stripeId = snapshot.data()[STRIPE_ID] ?? '';
 
     //passing a list of cartItems but if its null then passing empty list
     //and making a function to add items to that list
-    cart = _convertCartItems(snapshot.get(CART) ?? []);
+    cart = _convertCartItems(snapshot.data()[CART] ?? []);
 
     //getting the total cart price
-    totalCartPrice = snapshot.get(CART) == null
+    totalCartPrice = snapshot.data()[CART] == null
         ? 0
-        : getTotalPrice(cart: snapshot.get(CART));
+        : getTotalPrice(cart: snapshot.data()[CART]);
   }
 
   List<CartItemModel> _convertCartItems(List cart) {

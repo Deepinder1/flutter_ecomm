@@ -9,8 +9,8 @@ class UserServices {
   String collection = 'users';
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  void createUser(Map data) {
-    _firestore.collection(collection).doc(data['uid']).set(data);
+  Future<void> createUser(Map data) async {
+    await _firestore.collection(collection).doc(data['uid']).set(data);
   }
 
   Future<UserModel> getUserById(String id) async =>

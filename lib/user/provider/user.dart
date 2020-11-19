@@ -58,13 +58,14 @@ class UserProvider with ChangeNotifier {
       notifyListeners();
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((user) {
-        _userServices.createUser({
+          .then((user) async {
+        await _userServices.createUser({
           'name': name,
           'email': email,
           'uid': user.user.uid,
           'stripeId': ''
         });
+        notifyListeners();
       });
       return true;
     } catch (e) {
