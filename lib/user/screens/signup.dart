@@ -180,6 +180,8 @@ class _SignUpState extends State<SignUp> {
                                         _email.text, _password.text)) {
                                       _key.currentState.showSnackBar(SnackBar(
                                           content: Text('Sign Up Success')));
+                                      changeScreenReplacement(
+                                          context, HomePage());
                                       return;
                                       //TODO check if the commented statement works
                                       // if (!await user.signUp(_name.text,
@@ -187,9 +189,8 @@ class _SignUpState extends State<SignUp> {
                                       //   _key.currentState.showSnackBar(SnackBar(
                                       //       content: Text('Sign Up failed')));
                                       //   return;
+
                                     }
-                                    changeScreenReplacement(
-                                        context, HomePage());
                                   } else {
                                     _key.currentState.showSnackBar(SnackBar(
                                         content: Text('Sign Up Failed')));

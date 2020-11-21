@@ -33,9 +33,9 @@ class UserModel {
 
   //customized constructor
   UserModel.fromSnapshot(DocumentSnapshot snapshot) {
-    _name = snapshot.data()[NAME];
-    _email = snapshot.data()[EMAIL];
-    _id = snapshot.data()[ID];
+    _name = snapshot.data()[NAME] ?? 'name';
+    _email = snapshot.data()[EMAIL] ?? 'email';
+    _id = snapshot.data()[ID] ?? 'uid';
     _stripeId = snapshot.data()[STRIPE_ID] ?? '';
 
     //passing a list of cartItems but if its null then passing empty list
