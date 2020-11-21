@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ecom/business/db/category.dart';
+import 'package:flutter_ecom/business/db/product.dart';
 import 'package:flutter_ecom/business/screens/signup.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -15,11 +15,11 @@ class _AdminState extends State<Admin> {
   Page _selectedPage = Page.dashboard;
   MaterialColor active = Colors.amber;
   MaterialColor notActive = Colors.red;
-  TextEditingController categoryController = TextEditingController();
-  TextEditingController brandController = TextEditingController();
-  GlobalKey<FormState> _categoryFormKey = GlobalKey();
-  GlobalKey<FormState> _brandFormKey = GlobalKey();
-  CategoryService _categoryService = CategoryService();
+  TextEditingController productController = TextEditingController();
+  // TextEditingController brandController = TextEditingController();
+  GlobalKey<FormState> _productFormKey = GlobalKey();
+  // GlobalKey<FormState> _brandFormKey = GlobalKey();
+  ProductService _productService = ProductService();
   //TODO add this database models
   // BrandService _brandService = BrandService();
   @override
@@ -203,14 +203,6 @@ class _AdminState extends State<Admin> {
           children: <Widget>[
             Divider(),
             ListTile(
-              leading: Icon(Icons.add_circle),
-              title: Text('Add Category'),
-              onTap: () {
-                //TODO create _categoryAlert()
-              },
-            ),
-            Divider(),
-            ListTile(
               leading: Icon(Icons.add_circle_outline),
               title: Text('Add Product'),
               onTap: () {
@@ -240,27 +232,27 @@ class _AdminState extends State<Admin> {
     }
   }
 
-  void _categoryAlert() {
+  void _productAlert() {
     var alert = new AlertDialog(
       content: Form(
-        key: _categoryFormKey,
+        key: _productFormKey,
         child: TextFormField(
-          controller: categoryController,
+          controller: productController,
           validator: (value) {
             if (value.isEmpty) {
-              return 'category cannot be empty';
+              return 'product cannot be empty';
             }
           },
-          decoration: InputDecoration(hintText: "add category"),
+          decoration: InputDecoration(hintText: "add product"),
         ),
       ),
       actions: <Widget>[
         FlatButton(
             onPressed: () {
-              if (categoryController.text != null) {
-                _categoryService.createCategory(categoryController.text);
+              if (productController.text != null) {
+                _productService.createProduct(productController.text);
               }
-              Fluttertoast.showToast(msg: 'category created');
+              Fluttertoast.showToast(msg: 'product created');
               Navigator.pop(context);
             },
             child: Text('ADD')),
