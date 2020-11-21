@@ -249,9 +249,9 @@ class _AdminState extends State<Admin> {
       actions: <Widget>[
         FlatButton(
             onPressed: () {
-              if (productController.text != null) {
-                _productService.createProduct(productController.text);
-              }
+              // if (productController.text != null) {
+              //   _productService.createProduct(productController.text);
+              // }
               Fluttertoast.showToast(msg: 'product created');
               Navigator.pop(context);
             },

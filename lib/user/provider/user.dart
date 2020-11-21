@@ -59,13 +59,18 @@ class UserProvider with ChangeNotifier {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((user) async {
-        await _userServices.createUser({
-          'name': name,
-          'email': email,
-          'uid': user.user.uid,
-          'stripeId': ''
-        });
-        notifyListeners();
+        try {
+          await _userServices.createUser({
+            'name': name,
+            'email': email,
+            'uid': user.user.uid.toString(),
+            'stripeId': '',
+          });
+          notifyListeners();
+        } catch (e) {
+          notifyListeners();
+          print('The error for Creating user is: ${e.toString()}');
+        }
       });
       return true;
     } catch (e) {
