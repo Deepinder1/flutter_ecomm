@@ -9,7 +9,6 @@ import 'package:flutter_ecom/user/services/order.dart';
 import 'package:flutter_ecom/user/services/users.dart';
 import 'package:uuid/uuid.dart';
 import 'package:flutter/widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 enum Status { Uninitialized, Authenticated, Authenticating, Unauthenticated }
 
