@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -6,13 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_ecom/business/screens/admin.dart';
 import 'package:flutter_ecom/business/screens/signup.dart';
 import 'package:flutter_ecom/user/helpers/navigations.dart';
-import 'package:flutter_ecom/user/models/product.dart';
 import 'package:flutter_ecom/user/provider/app.dart';
 import 'package:flutter_ecom/user/provider/product.dart';
 import 'package:flutter_ecom/user/provider/user.dart';
 import 'package:flutter_ecom/user/screens/home.dart';
 import 'package:flutter_ecom/user/screens/login.dart';
-import 'package:flutter_ecom/user/screens/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:splashscreen/splashscreen.dart';
 
