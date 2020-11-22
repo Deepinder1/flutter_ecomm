@@ -57,13 +57,13 @@ class UserProvider with ChangeNotifier {
       notifyListeners();
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((user) async {
+          .then((user) {
         try {
-          await _userServices.createUser({
+          _userServices.createUser({
             'name': name,
             'email': email,
-            'uid': user.user.uid.toString(),
-            'stripeId': '',
+            'uid': user.user.uid,
+            // 'stripeId': '',
           });
           notifyListeners();
         } catch (e) {
@@ -92,7 +92,7 @@ class UserProvider with ChangeNotifier {
       _status = Status.Unauthenticated;
     } else {
       _user = user;
-      _userModel = await _userServices.getUserById(user.uid);
+      // _userModel = await _userServices.getUserById(user.uid);
       _status = Status.Authenticated;
     }
     notifyListeners();
@@ -146,7 +146,7 @@ class UserProvider with ChangeNotifier {
   }
 
   Future<void> reloadUserModel() async {
-    _userModel = await _userServices.getUserById(user.uid);
+    // _userModel = await _userServices.getUserById(user.uid);
     notifyListeners();
   }
 }

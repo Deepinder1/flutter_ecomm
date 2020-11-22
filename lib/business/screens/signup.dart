@@ -4,7 +4,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'email_login.dart';
 import 'email_signup.dart';
 
-class SignUp extends StatelessWidget {
+class BusinessSignUp extends StatelessWidget {
   final String title = "Sign Up";
   @override
   Widget build(BuildContext context) {

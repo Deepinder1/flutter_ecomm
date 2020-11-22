@@ -234,4 +234,12 @@ class _SignUpState extends State<SignUp> {
             ),
     );
   }
+
+  @override
+  void dispose() {
+    _name.dispose();
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
 }

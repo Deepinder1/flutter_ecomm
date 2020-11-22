@@ -10,6 +10,7 @@ import 'package:flutter_ecom/user/provider/product.dart';
 import 'package:flutter_ecom/user/provider/user.dart';
 import 'package:flutter_ecom/user/screens/home.dart';
 import 'package:flutter_ecom/user/screens/login.dart';
+import 'package:flutter_ecom/user/screens/signup.dart';
 import 'package:provider/provider.dart';
 import 'package:splashscreen/splashscreen.dart';
 
@@ -26,7 +27,7 @@ void main() async {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.amber),
-        // home: Login(),
+        // home: SignUp(),
         home: ScreensController(),
       ),
     ),
@@ -63,7 +64,7 @@ class ScreensController extends StatelessWidget {
               },
               color: Colors.red,
               textColor: Colors.white,
-              child: Text("Business Login".toUpperCase(),
+              child: Text("Business".toUpperCase(),
                   style: TextStyle(fontSize: 14)),
             ),
             SizedBox(height: 50),
@@ -77,8 +78,7 @@ class ScreensController extends StatelessWidget {
               },
               color: Colors.red,
               textColor: Colors.white,
-              child: Text("User Login".toUpperCase(),
-                  style: TextStyle(fontSize: 14)),
+              child: Text("User".toUpperCase(), style: TextStyle(fontSize: 14)),
             ),
           ],
         ),
@@ -93,7 +93,7 @@ class AdminScreenController extends StatelessWidget {
   Widget build(BuildContext context) {
     User result = FirebaseAuth.instance.currentUser;
     return new SplashScreen(
-      navigateAfterSeconds: result != null ? Admin() : SignUp(),
+      navigateAfterSeconds: result != null ? Admin() : BusinessSignUp(),
       seconds: 1,
       title: new Text(
         'Welcome The Business Admin!',
@@ -102,7 +102,7 @@ class AdminScreenController extends StatelessWidget {
       backgroundColor: Colors.white,
       styleTextUnderTheLoader: new TextStyle(),
       photoSize: 100.0,
-      onClick: () => print("flutter"),
+      onClick: () => print("business"),
       loaderColor: Colors.red,
     );
   }
@@ -114,14 +114,17 @@ class UserScreenController extends StatelessWidget {
     final user = Provider.of<UserProvider>(context);
     switch (user.status) {
       case Status.Uninitialized:
+        // return SignUp();
         return Login();
-      //TODO see if this condition uses break;
+      //TODO convert signup to login;
       case Status.Unauthenticated:
       case Status.Authenticating:
+        // return SignUp();
         return Login();
       case Status.Authenticated:
         return HomePage();
       default:
+        return SignUp();
         return Login();
     }
   }

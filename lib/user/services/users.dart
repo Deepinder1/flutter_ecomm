@@ -7,9 +7,12 @@ import 'package:flutter_ecom/user/models/user.dart';
 
 class UserServices {
   String collection = 'users';
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('users');
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<void> createUser(Map data) async {
+  Future<void> createUser(Map<String, dynamic> data) async {
+    // collectionReference.doc(data['uid']).set(data);
     await _firestore.collection(collection).doc(data['uid']).set(data);
   }
 
