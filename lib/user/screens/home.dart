@@ -16,7 +16,6 @@ import 'package:flutter_ecom/user/helpers/style.dart';
 import 'package:flutter_ecom/user/provider/user.dart';
 import 'package:flutter_ecom/user/screens/login.dart';
 import 'package:flutter_ecom/user/widgets/custom_text.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {

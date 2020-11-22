@@ -86,7 +86,7 @@ class _SignUpState extends State<SignUp> {
                                       if (value.isEmpty) {
                                         return 'The name cannot be empty';
                                       }
-                                      return value;
+                                      return null;
                                     },
                                   ),
                                 ),
