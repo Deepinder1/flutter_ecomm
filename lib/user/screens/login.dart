@@ -86,8 +86,8 @@ class _LoginState extends State<Login> {
                                         RegExp regex = new RegExp(pattern);
                                         if (!regex.hasMatch(value))
                                           return 'Please make sure your email address is valid';
-                                        else
-                                          return null;
+                                        // else
+                                        //   return null;
                                       }
                                     },
                                   ),
@@ -118,7 +118,7 @@ class _LoginState extends State<Login> {
                                       } else if (value.length < 6) {
                                         return "To be at least 6 characters long";
                                       }
-                                      return null;
+                                      // return null;
                                     },
                                   ),
                                 ),
@@ -222,5 +222,12 @@ class _LoginState extends State<Login> {
               ],
             ),
     );
+  }
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
   }
 }

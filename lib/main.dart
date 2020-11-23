@@ -10,7 +10,6 @@ import 'package:flutter_ecom/user/provider/product.dart';
 import 'package:flutter_ecom/user/provider/user.dart';
 import 'package:flutter_ecom/user/screens/home.dart';
 import 'package:flutter_ecom/user/screens/login.dart';
-import 'package:flutter_ecom/user/screens/signup.dart';
 import 'package:provider/provider.dart';
 import 'package:splashscreen/splashscreen.dart';
 
@@ -124,7 +123,7 @@ class UserScreenController extends StatelessWidget {
       case Status.Authenticated:
         return HomePage();
       default:
-        return SignUp();
+        // return SignUp();
         return Login();
     }
   }

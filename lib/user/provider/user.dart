@@ -92,7 +92,7 @@ class UserProvider with ChangeNotifier {
       _status = Status.Unauthenticated;
     } else {
       _user = user;
-      // _userModel = await _userServices.getUserById(user.uid);
+      _userModel = await _userServices.getUserById(user.uid);
       _status = Status.Authenticated;
     }
     notifyListeners();
@@ -146,7 +146,7 @@ class UserProvider with ChangeNotifier {
   }
 
   Future<void> reloadUserModel() async {
-    // _userModel = await _userServices.getUserById(user.uid);
+    _userModel = await _userServices.getUserById(user.uid);
     notifyListeners();
   }
 }

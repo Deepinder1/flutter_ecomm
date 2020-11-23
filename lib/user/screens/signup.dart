@@ -86,7 +86,7 @@ class _SignUpState extends State<SignUp> {
                                       if (value.isEmpty) {
                                         return 'The name cannot be empty';
                                       }
-                                      return null;
+                                      // return null;
                                     },
                                   ),
                                 ),
@@ -118,8 +118,8 @@ class _SignUpState extends State<SignUp> {
                                         RegExp regex = new RegExp(pattern);
                                         if (!regex.hasMatch(value))
                                           return 'Please make sure your email address is valid';
-                                        else
-                                          return null;
+                                        // else
+                                        //   return null;
                                       }
                                     },
                                   ),
@@ -151,7 +151,7 @@ class _SignUpState extends State<SignUp> {
                                       } else if (value.length < 6) {
                                         return "To be at least 6 characters long";
                                       }
-                                      return null;
+                                      // return null;
                                     },
                                   ),
                                   trailing: IconButton(
