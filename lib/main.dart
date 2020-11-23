@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_ecom/business/providers/app_states.dart';
+import 'package:flutter_ecom/business/providers/products_provider.dart';
 import 'package:flutter_ecom/business/screens/admin.dart';
 import 'package:flutter_ecom/business/screens/signup.dart';
 import 'package:flutter_ecom/user/helpers/navigations.dart';
@@ -22,6 +24,8 @@ void main() async {
         ChangeNotifierProvider.value(value: UserProvider.initialize()),
         ChangeNotifierProvider.value(value: ProductProvider.initialize()),
         ChangeNotifierProvider.value(value: AppProvider()),
+        ChangeNotifierProvider.value(value: AppState()),
+        ChangeNotifierProvider.value(value: AdminProductProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -92,7 +96,7 @@ class AdminScreenController extends StatelessWidget {
   Widget build(BuildContext context) {
     User result = FirebaseAuth.instance.currentUser;
     return new SplashScreen(
-      navigateAfterSeconds: result != null ? Admin() : BusinessSignUp(),
+      navigateAfterSeconds: result != null ? Admin() : AdminSignUp(),
       seconds: 1,
       title: new Text(
         'Welcome The Business Admin!',

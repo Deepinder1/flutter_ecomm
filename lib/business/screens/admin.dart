@@ -218,7 +218,7 @@ class _AdminState extends State<Admin> {
                 auth.signOut().then((res) {
                   Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => BusinessSignUp()),
+                      MaterialPageRoute(builder: (context) => AdminSignUp()),
                       (Route<dynamic> route) => false);
                 });
               },
