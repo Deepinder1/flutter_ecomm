@@ -21,7 +21,7 @@ class ProductModel {
   String _category;
   String _brand;
   int _quantity;
-  int _price;
+  double _price;
   bool _sale;
   bool _featured;
   List _colors;
@@ -43,7 +43,7 @@ class ProductModel {
 
   int get quantity => _quantity;
 
-  int get price => _price;
+  double get price => _price;
 
   bool get featured => _featured;
 
@@ -60,7 +60,7 @@ class ProductModel {
     _sale = snapshot.data()[SALE] ?? false;
     _description = snapshot.data()[DESCRIPTION] ?? '';
     _featured = snapshot.data()[FEATURED] ?? false;
-    _price = snapshot.data()[PRICE] ?? 0;
+    _price = snapshot.data()[PRICE] ?? 0.0;
     _category = snapshot.data()[CATEGORY] ?? '';
     _colors = snapshot.data()[COLORS] ?? [];
     _sizes = snapshot.data()[SIZES] ?? [];
