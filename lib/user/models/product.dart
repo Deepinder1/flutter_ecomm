@@ -55,16 +55,16 @@ class ProductModel {
 
 //consturctor and Initializing feilds
   ProductModel.fromSnapshot(DocumentSnapshot snapshot) {
-    _id = snapshot.get(ID);
-    _brand = snapshot.get(BRAND);
-    _sale = snapshot.get(SALE);
-    _description = snapshot.get(DESCRIPTION);
-    _featured = snapshot.get(FEATURED);
-    _price = snapshot.get(PRICE);
-    _category = snapshot.get(CATEGORY);
-    _colors = snapshot.get(COLORS);
-    _sizes = snapshot.get(SIZES);
-    _name = snapshot.get(NAME);
-    _picture = snapshot.get(PICTURE);
+    _id = snapshot.get(ID) ?? '';
+    _brand = snapshot.get(BRAND) ?? '';
+    _sale = snapshot.get(SALE) ?? '';
+    _description = snapshot.get(DESCRIPTION) ?? '';
+    _featured = snapshot.get(FEATURED) ?? '';
+    _price = snapshot.get(PRICE) ?? '';
+    _category = snapshot.get(CATEGORY) ?? '';
+    _colors = snapshot.get(COLORS) ?? '';
+    _sizes = snapshot.get(SIZES) ?? '';
+    _name = snapshot.get(NAME) ?? '';
+    _picture = snapshot.get(PICTURE) ?? '';
   }
 }

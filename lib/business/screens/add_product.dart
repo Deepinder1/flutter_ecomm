@@ -83,9 +83,12 @@ class _AddProductState extends State<AddProduct> {
       appBar: AppBar(
         elevation: 0.1,
         backgroundColor: white,
-        leading: Icon(
-          Icons.close,
+        leading: IconButton(
+          icon: Icon(Icons.close),
           color: black,
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: Text(
           "add product",
@@ -335,11 +338,8 @@ class _AddProductState extends State<AddProduct> {
                     Text('Available Sizes'),
 
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Checkbox(
-                            value: selectedSizes.contains('XS'),
-                            onChanged: (value) => changeSelectedSize('XS')),
-                        Text('XS'),
                         Checkbox(
                             value: selectedSizes.contains('S'),
                             onChanged: (value) => changeSelectedSize('S')),
@@ -356,10 +356,6 @@ class _AddProductState extends State<AddProduct> {
                             value: selectedSizes.contains('XL'),
                             onChanged: (value) => changeSelectedSize('XL')),
                         Text('XL'),
-                        Checkbox(
-                            value: selectedSizes.contains('XXL'),
-                            onChanged: (value) => changeSelectedSize('XXL')),
-                        Text('XXL'),
                       ],
                     ),
 

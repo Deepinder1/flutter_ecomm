@@ -795,26 +795,26 @@ class _HomePageScreenState extends State<HomePageScreen> {
             FeaturedProducts(),
 
 //          recent products
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(14.0),
-                  child: Container(
-                      alignment: Alignment.centerLeft,
-                      child: new Text('Recent products')),
-                ),
-              ],
-            ),
+            // Row(
+            //   children: <Widget>[
+            //     Padding(
+            //       padding: const EdgeInsets.all(14.0),
+            //       child: Container(
+            //           alignment: Alignment.centerLeft,
+            //           child: new Text('Recent products')),
+            //     ),
+            //   ],
+            // ),
 
-            Column(
-              children: productProvider.products
-                  .map((item) => GestureDetector(
-                        child: ProductCard(
-                          product: item,
-                        ),
-                      ))
-                  .toList(),
-            )
+            // Column(
+            //   children: productProvider.products
+            //       .map((item) => GestureDetector(
+            //             child: ProductCard(
+            //               product: item,
+            //             ),
+            //           ))
+            //       .toList(),
+            // ),
           ],
         ),
       ),
