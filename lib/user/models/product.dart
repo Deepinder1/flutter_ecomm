@@ -55,16 +55,29 @@ class ProductModel {
 
 //consturctor and Initializing feilds
   ProductModel.fromSnapshot(DocumentSnapshot snapshot) {
-    _id = snapshot.get(ID) ?? '';
-    _brand = snapshot.get(BRAND) ?? '';
-    _sale = snapshot.get(SALE) ?? '';
-    _description = snapshot.get(DESCRIPTION) ?? '';
-    _featured = snapshot.get(FEATURED) ?? '';
-    _price = snapshot.get(PRICE) ?? '';
-    _category = snapshot.get(CATEGORY) ?? '';
-    _colors = snapshot.get(COLORS) ?? '';
-    _sizes = snapshot.get(SIZES) ?? '';
-    _name = snapshot.get(NAME) ?? '';
-    _picture = snapshot.get(PICTURE) ?? '';
+    _id = snapshot.data()[ID] ?? '';
+    _brand = snapshot.data()[BRAND] ?? '';
+    _sale = snapshot.data()[SALE] ?? false;
+    _description = snapshot.data()[DESCRIPTION] ?? '';
+    _featured = snapshot.data()[FEATURED] ?? false;
+    _price = snapshot.data()[PRICE] ?? 0;
+    _category = snapshot.data()[CATEGORY] ?? '';
+    _colors = snapshot.data()[COLORS] ?? [];
+    _sizes = snapshot.data()[SIZES] ?? [];
+    _name = snapshot.data()[NAME] ?? '';
+    _picture = snapshot.data()[PICTURE] ?? '';
   }
+  // ProductModel.fromSnapshot(DocumentSnapshot snapshot) {
+  //   _id = snapshot.get(ID) ?? '';
+  //   _brand = snapshot.get(BRAND) ?? '';
+  //   _sale = snapshot.get(SALE) ?? '';
+  //   _description = snapshot.get(DESCRIPTION) ?? '';
+  //   _featured = snapshot.get(FEATURED) ?? '';
+  //   _price = snapshot.get(PRICE) ?? '';
+  //   _category = snapshot.get(CATEGORY) ?? '';
+  //   _colors = snapshot.get(COLORS) ?? '';
+  //   _sizes = snapshot.get(SIZES) ?? '';
+  //   _name = snapshot.get(NAME) ?? '';
+  //   _picture = snapshot.get(PICTURE) ?? '';
+  // }
 }

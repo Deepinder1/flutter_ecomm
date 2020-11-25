@@ -33,14 +33,25 @@ class OrderModel {
   List cart;
 
   OrderModel.fromSnapshot(DocumentSnapshot snapshot) {
-    _id = snapshot.get(ID);
-    _description = snapshot.get(DESCRIPTION);
-    _total = snapshot.get(TOTAL);
-    _status = snapshot.get(STATUS);
-    _userId = snapshot.get(USER_ID);
-    _createdAt = snapshot.get(CREATED_AT);
+    _id = snapshot.data()[ID];
+    _description = snapshot.data()[DESCRIPTION];
+    _total = snapshot.data()[TOTAL];
+    _status = snapshot.data()[STATUS];
+    _userId = snapshot.data()[USER_ID];
+    _createdAt = snapshot.data()[CREATED_AT];
 
     //initializing public feid
-    cart = snapshot.get(CART);
+    cart = snapshot.data()[CART];
+
+    // OrderModel.fromSnapshot(DocumentSnapshot snapshot) {
+    //   _id = snapshot.get(ID);
+    //   _description = snapshot.get(DESCRIPTION);
+    //   _total = snapshot.get(TOTAL);
+    //   _status = snapshot.get(STATUS);
+    //   _userId = snapshot.get(USER_ID);
+    //   _createdAt = snapshot.get(CREATED_AT);
+
+    //   //initializing public feid
+    //   cart = snapshot.get(CART);
   }
 }

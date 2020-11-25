@@ -33,7 +33,7 @@ class UserModel {
 
   //customized constructor
   UserModel.fromSnapshot(DocumentSnapshot snapshot) {
-    _name = snapshot.get(NAME) ?? 'name';
+    _name = snapshot.data()[NAME] ?? 'name';
     _email = snapshot.data()[EMAIL] ?? 'email';
     _id = snapshot.data()[ID] ?? 'uid';
     _stripeId = snapshot.data()[STRIPE_ID] ?? '';
