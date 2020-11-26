@@ -4,13 +4,13 @@ class AdminProductProvider with ChangeNotifier {
   List<String> selectedColors = [];
 
   addColors(String color) {
-    selectedColors.add(color);
+    selectedColors.add(color ?? '');
     print(selectedColors.length.toString());
     notifyListeners();
   }
 
   removeColor(String color) {
-    selectedColors.remove(color);
+    selectedColors.remove(color ?? '');
     print(selectedColors.length.toString());
     notifyListeners();
   }

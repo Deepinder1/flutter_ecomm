@@ -129,7 +129,7 @@ class _AddProductState extends State<AddProduct> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'enter a product name with 10 characters at maximum',
+                        'Enter a product name with 10 characters at maximum',
                         textAlign: TextAlign.center,
                         style: TextStyle(color: red, fontSize: 12),
                       ),
@@ -334,6 +334,23 @@ class _AddProductState extends State<AddProduct> {
                         ),
                       ],
                     ),
+                    //add custom color
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: TextFormField(
+                        controller: productNameController,
+                        decoration:
+                            InputDecoration(hintText: 'Add Custom color'),
+                        validator: (value) {
+                          if (adminProductProvider.selectedColors
+                              .contains(value)) {
+                            adminProductProvider.removeColor(value);
+                          } else {
+                            adminProductProvider.addColors(value);
+                          }
+                        },
+                      ),
+                    ),
 
                     Text('Available Sizes'),
 
@@ -357,6 +374,23 @@ class _AddProductState extends State<AddProduct> {
                             onChanged: (value) => changeSelectedSize('XL')),
                         Text('XL'),
                       ],
+                    ),
+
+                    //add custom size
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: TextFormField(
+                        controller: productNameController,
+                        decoration:
+                            InputDecoration(hintText: 'Add Custom size'),
+                        validator: (value) {
+                          if (selectedSizes.contains(value)) {
+                            return 'It already has this Size';
+                          } else {
+                            changeSelectedSize(value);
+                          }
+                        },
+                      ),
                     ),
 
                     Row(
@@ -451,7 +485,7 @@ class _AddProductState extends State<AddProduct> {
                         ),
                         validator: (value) {
                           if (value.isEmpty) {
-                            return 'You must enter the product name';
+                            return 'You must enter the product quantity';
                           }
                         },
                       ),
@@ -467,7 +501,7 @@ class _AddProductState extends State<AddProduct> {
                         ),
                         validator: (value) {
                           if (value.isEmpty) {
-                            return 'You must enter the product name';
+                            return 'You must enter the product price';
                           }
                         },
                       ),

@@ -92,14 +92,6 @@ class _AdminState extends State<Admin> {
               },
             ),
             Divider(),
-            ListTile(
-              leading: Icon(Icons.library_books),
-              title: Text("brand list"),
-              onTap: () {
-                _brandService.getBrands();
-              },
-            ),
-            Divider(),
           ],
         );
         break;
