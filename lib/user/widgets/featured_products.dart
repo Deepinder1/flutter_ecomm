@@ -3,7 +3,6 @@ import 'package:flutter_ecom/user/provider/product.dart';
 import 'package:flutter_ecom/user/widgets/featured_card.dart';
 import 'package:provider/provider.dart';
 
-//TODO see if this is required or not
 class FeaturedProducts extends StatefulWidget {
   @override
   _FeaturedProductsState createState() => _FeaturedProductsState();

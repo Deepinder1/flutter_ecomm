@@ -119,7 +119,6 @@ class UserScreenController extends StatelessWidget {
       case Status.Uninitialized:
         // return SignUp();
         return Login();
-      //TODO convert signup to login;
       case Status.Unauthenticated:
       case Status.Authenticating:
         // return SignUp();

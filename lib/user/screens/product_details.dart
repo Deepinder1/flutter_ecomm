@@ -26,7 +26,6 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _color = widget.product.colors[0];
     _size = widget.product.sizes[0];

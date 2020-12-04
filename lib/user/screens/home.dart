@@ -532,7 +532,6 @@ import 'package:flutter_ecom/user/screens/qr_screen.dart';
 import 'package:flutter_ecom/user/services/product.dart';
 import 'package:flutter_ecom/user/widgets/custom_text.dart';
 import 'package:flutter_ecom/user/widgets/featured_products.dart';
-import 'package:flutter_ecom/user/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

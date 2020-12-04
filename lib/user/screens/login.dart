@@ -141,7 +141,7 @@ class _LoginState extends State<Login> {
                                           _email.text, _password.text)) {
                                         _key.currentState.showSnackBar(SnackBar(
                                             content: Text('Sign In failed')));
-                                        return; //TODO if not required
+                                        return;
                                       }
                                       changeScreen(context, HomePage());
                                     }

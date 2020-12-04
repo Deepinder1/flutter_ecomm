@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecom/user/helpers/navigations.dart';
 import 'package:flutter_ecom/user/helpers/style.dart';
 import 'package:flutter_ecom/user/provider/user.dart';
-import 'package:flutter_ecom/user/screens/home.dart';
 import 'package:flutter_ecom/user/screens/login.dart';
 import 'package:flutter_ecom/user/widgets/loading.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +25,6 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     //provider
 
-    //TODO see if listen : false have to be set in this provider
     final user = Provider.of<UserProvider>(context);
 
     return Scaffold(
@@ -111,7 +109,6 @@ class _SignUpState extends State<SignUp> {
                                         hintText: "Email",
                                         icon: Icon(Icons.alternate_email),
                                         border: InputBorder.none),
-                                    //TODO See if this validator doesn't work then put the pattern out of if block
                                     validator: (value) {
                                       if (value.isEmpty) {
                                         Pattern pattern =
