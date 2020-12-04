@@ -14,9 +14,11 @@ class _FeaturedProductsState extends State<FeaturedProducts> {
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
     return Container(
-      height: 230,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
+      height: (MediaQuery.of(context).size.height) - 200,
+      child: GridView.builder(
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        scrollDirection: Axis.vertical,
         itemCount: productProvider.products.length,
         itemBuilder: (_, index) {
           return FeaturedCard(

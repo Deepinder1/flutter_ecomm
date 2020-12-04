@@ -21,6 +21,8 @@ class _AddProductState extends State<AddProduct> {
   ProductService productService = ProductService();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController productNameController = TextEditingController();
+  TextEditingController productColorController = TextEditingController();
+  TextEditingController productSizeController = TextEditingController();
   TextEditingController quatityController = TextEditingController();
   final priceController = TextEditingController();
   List<DocumentSnapshot> brands = <DocumentSnapshot>[];
@@ -69,8 +71,8 @@ class _AddProductState extends State<AddProduct> {
         items.insert(
             0,
             DropdownMenuItem(
-                child: Text(brands[i].data()['brand']),
-                value: brands[i].data()['brand']));
+                child: Text(brands[i].data()['brand'] ?? 'Brand'),
+                value: brands[i].data()['brand'] ?? 'Brand'));
       });
     }
     return items;
@@ -132,6 +134,28 @@ class _AddProductState extends State<AddProduct> {
                         'Enter a product name with 10 characters at maximum',
                         textAlign: TextAlign.center,
                         style: TextStyle(color: red, fontSize: 12),
+                      ),
+                    ),
+
+                    //add custom color
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: TextFormField(
+                        controller: productColorController,
+                        decoration:
+                            InputDecoration(hintText: 'Add Custom color'),
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            value = 'Color';
+                          } else {
+                            if (adminProductProvider.selectedColors
+                                .contains(value ?? 'Color')) {
+                              adminProductProvider.removeColor(value);
+                            } else {
+                              adminProductProvider.addColors(value);
+                            }
+                          }
+                        },
                       ),
                     ),
 
@@ -334,19 +358,23 @@ class _AddProductState extends State<AddProduct> {
                         ),
                       ],
                     ),
-                    //add custom color
+
+                    //add custom size
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: TextFormField(
-                        controller: productNameController,
+                        controller: productSizeController,
                         decoration:
-                            InputDecoration(hintText: 'Add Custom color'),
+                            InputDecoration(hintText: 'Add Custom size'),
                         validator: (value) {
-                          if (adminProductProvider.selectedColors
-                              .contains(value)) {
-                            adminProductProvider.removeColor(value);
+                          if (value.isEmpty) {
+                            value = 'Size';
                           } else {
-                            adminProductProvider.addColors(value);
+                            if (selectedSizes.contains(value ?? 'XS')) {
+                              return 'It already has this Size';
+                            } else {
+                              changeSelectedSize(value);
+                            }
                           }
                         },
                       ),
@@ -376,23 +404,6 @@ class _AddProductState extends State<AddProduct> {
                       ],
                     ),
 
-                    //add custom size
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: TextFormField(
-                        controller: productNameController,
-                        decoration:
-                            InputDecoration(hintText: 'Add Custom size'),
-                        validator: (value) {
-                          if (selectedSizes.contains(value)) {
-                            return 'It already has this Size';
-                          } else {
-                            changeSelectedSize(value);
-                          }
-                        },
-                      ),
-                    ),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
@@ -413,7 +424,8 @@ class _AddProductState extends State<AddProduct> {
                         ),
                         Row(
                           children: <Widget>[
-                            Text('Featured'),
+                            Text('Show to User'),
+                            //show to user == Featured
                             SizedBox(
                               width: 10,
                             ),
@@ -469,7 +481,7 @@ class _AddProductState extends State<AddProduct> {
                         DropdownButton(
                           items: brandsDropDown,
                           onChanged: changeSelectedBrand,
-                          value: _currentBrand,
+                          value: _currentBrand.toString(),
                         ),
                       ],
                     ),
@@ -497,7 +509,7 @@ class _AddProductState extends State<AddProduct> {
                         controller: priceController,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          hintText: 'Price',
+                          hintText: 'Price, Write in decimal format',
                         ),
                         validator: (value) {
                           if (value.isEmpty) {
@@ -510,7 +522,7 @@ class _AddProductState extends State<AddProduct> {
                     FlatButton(
                       color: red,
                       textColor: white,
-                      child: Text('add product'),
+                      child: Text('Add product'),
                       onPressed: () {
                         validateAndUpload();
                       },
@@ -547,7 +559,7 @@ class _AddProductState extends State<AddProduct> {
   }
 
   changeSelectedBrand(String selectedBrand) {
-    setState(() => _currentCategory = selectedBrand);
+    setState(() => _currentBrand = selectedBrand);
   }
 
   void changeSelectedSize(String size) {

@@ -3,6 +3,7 @@ import 'package:flutter_ecom/user/helpers/navigations.dart';
 import 'package:flutter_ecom/user/helpers/style.dart';
 import 'package:flutter_ecom/user/provider/user.dart';
 import 'package:flutter_ecom/user/screens/home.dart';
+import 'package:flutter_ecom/user/screens/login.dart';
 import 'package:flutter_ecom/user/widgets/loading.dart';
 import 'package:provider/provider.dart';
 
@@ -180,8 +181,7 @@ class _SignUpState extends State<SignUp> {
                                         _email.text, _password.text)) {
                                       _key.currentState.showSnackBar(SnackBar(
                                           content: Text('Sign Up Success')));
-                                      changeScreenReplacement(
-                                          context, HomePage());
+                                      changeScreenReplacement(context, Login());
                                       return;
                                       //TODO check if the commented statement works
                                       // if (!await user.signUp(_name.text,

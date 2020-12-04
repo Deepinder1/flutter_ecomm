@@ -16,7 +16,7 @@ class OrderServices {
       String description,
       String status,
       List<CartItemModel> cart,
-      int totalPrice}) {
+      double totalPrice}) {
     List<Map> convertedCart = [];
 
     for (CartItemModel item in cart) {

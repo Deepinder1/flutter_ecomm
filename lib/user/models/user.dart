@@ -14,7 +14,7 @@ class UserModel {
   String _email;
   String _id;
   String _stripeId;
-  int _priceSum = 0;
+  double _priceSum = 0;
 
   //getters
   String get name => _name;
@@ -29,7 +29,7 @@ class UserModel {
 
   List<CartItemModel> cart;
 
-  int totalCartPrice;
+  double totalCartPrice;
 
   //customized constructor
   UserModel.fromSnapshot(DocumentSnapshot snapshot) {
@@ -44,7 +44,7 @@ class UserModel {
 
     //getting the total cart price
     totalCartPrice = snapshot.data()[CART] == null
-        ? 0
+        ? 0.0
         : getTotalPrice(cart: snapshot.data()[CART]);
   }
 
@@ -58,16 +58,16 @@ class UserModel {
   }
 
   //making a function to get total price
-  int getTotalPrice({List cart}) {
+  double getTotalPrice({List cart}) {
     if (cart == null) {
-      return 0;
+      return 0.0;
     }
 
     for (Map cartItem in cart) {
       _priceSum += cartItem['price'];
     }
 
-    int total = _priceSum;
+    double total = _priceSum;
     return total;
   }
 }

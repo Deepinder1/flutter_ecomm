@@ -105,7 +105,7 @@ class UserProvider with ChangeNotifier {
       String cartItemId = uuid.v4();
       List<CartItemModel> cart = _userModel.cart;
 
-      Map cartItem = {
+      Map cartItemMap = {
         'id': cartItemId,
         'name': product.name,
         'image': product.picture,
@@ -115,9 +115,9 @@ class UserProvider with ChangeNotifier {
         'color': color
       };
 
-      CartItemModel item = CartItemModel.fromMap(cartItem);
+      CartItemModel item = CartItemModel.fromMap(cartItemMap);
 
-      print('Cart items are : ${cart.toString()}');
+      print('Cart items are : ${cartItemMap.toString()}');
       _userServices.addToCart(userId: _user.uid, cartItem: item);
 
       return true;

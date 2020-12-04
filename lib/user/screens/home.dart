@@ -527,6 +527,7 @@ import 'package:flutter_ecom/user/helpers/style.dart';
 import 'package:flutter_ecom/user/provider/product.dart';
 import 'package:flutter_ecom/user/provider/user.dart';
 import 'package:flutter_ecom/user/screens/login.dart';
+import 'package:flutter_ecom/user/screens/myorders.dart';
 import 'package:flutter_ecom/user/screens/qr_screen.dart';
 import 'package:flutter_ecom/user/services/product.dart';
 import 'package:flutter_ecom/user/widgets/custom_text.dart';
@@ -563,12 +564,12 @@ class _HomePageState extends State<HomePage> {
         physics: NeverScrollableScrollPhysics(),
         controller: _myPage,
         children: <Widget>[
-          OrdersScreen(),
+          MyOrdersScreen(),
           HomePageScreen(),
           QRViewExample(),
           CategoriesScreen(),
           CartScreen(),
-          OrdersScreen(),
+          MyOrdersScreen(),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
@@ -787,24 +788,24 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 Padding(
                   padding: const EdgeInsets.all(14.0),
                   child: Container(
-                      alignment: Alignment.centerLeft,
+                      alignment: Alignment.center,
                       child: new Text('Featured products')),
                 ),
               ],
             ),
             FeaturedProducts(),
 
-//          recent products
-            // Row(
-            //   children: <Widget>[
-            //     Padding(
-            //       padding: const EdgeInsets.all(14.0),
-            //       child: Container(
-            //           alignment: Alignment.centerLeft,
-            //           child: new Text('Recent products')),
-            //     ),
-            //   ],
-            // ),
+// //          recent products
+//             Row(
+//               children: <Widget>[
+//                 Padding(
+//                   padding: const EdgeInsets.all(14.0),
+//                   child: Container(
+//                       alignment: Alignment.centerLeft,
+//                       child: new Text('Recent products')),
+//                 ),
+//               ],
+//             ),
 
             // Column(
             //   children: productProvider.products

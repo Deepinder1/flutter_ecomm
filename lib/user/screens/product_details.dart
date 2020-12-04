@@ -132,7 +132,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Text(
-                              '\$${widget.product.price / 100}',
+                              'Rs ${widget.product.price}',
                               textAlign: TextAlign.end,
                               style: TextStyle(
                                   color: Colors.white,
@@ -171,7 +171,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                     alignment: Alignment.centerLeft,
                     child: InkWell(
                       onTap: () {
-                        print("CLICKED");
                         Navigator.pop(context);
                       },
                       child: Container(

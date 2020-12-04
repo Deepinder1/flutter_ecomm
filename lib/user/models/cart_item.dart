@@ -13,7 +13,7 @@ class CartItemModel {
   String _productId;
   String _size;
   String _color;
-  int _price;
+  double _price;
 
   //getters
   String get id => _id;
@@ -28,7 +28,7 @@ class CartItemModel {
 
   String get color => _color;
 
-  int get price => _price;
+  double get price => _price;
 
   //custom constuctor
   CartItemModel.fromMap(Map data) {
