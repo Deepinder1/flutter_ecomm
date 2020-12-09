@@ -7,6 +7,7 @@ import 'package:flutter_ecom/business/providers/products_provider.dart';
 import 'package:flutter_ecom/business/screens/admin.dart';
 import 'package:flutter_ecom/business/screens/signup.dart';
 import 'package:flutter_ecom/user/helpers/navigations.dart';
+import 'package:flutter_ecom/user/helpers/style.dart';
 import 'package:flutter_ecom/user/provider/app.dart';
 import 'package:flutter_ecom/user/provider/product.dart';
 import 'package:flutter_ecom/user/provider/user.dart';
@@ -29,12 +30,30 @@ void main() async {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.amber),
-        // home: SignUp(),
-        home: ScreensController(),
+        theme: ThemeData(primarySwatch: cyan),
+        home: IntroScreen1(),
       ),
     ),
   );
+}
+
+class IntroScreen1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: cyan,
+      body: Center(
+        child: RaisedButton(
+          splashColor: cyan,
+          padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
+          autofocus: true,
+          color: white,
+          child: Text('Get Started'.toUpperCase()),
+          onPressed: () => changeScreen(context, ScreensController()),
+        ),
+      ),
+    );
+  }
 }
 
 class ScreensController extends StatelessWidget {
@@ -44,15 +63,17 @@ class ScreensController extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    //TODO Add splash screen with logic
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.shopping_bag,
-              size: 100,
+            Container(
+              alignment: Alignment.center,
+              child: Image.asset(
+                "assets/nidus.jpg",
+                width: 280.0,
+              ),
             ),
             SizedBox(
               height: 50,
@@ -61,7 +82,7 @@ class ScreensController extends StatelessWidget {
               padding: EdgeInsets.all(40),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0),
-                  side: BorderSide(color: Colors.red)),
+                  side: BorderSide(color: Colors.amber)),
               onPressed: () {
                 changeScreen(context, AdminScreenController());
               },
@@ -87,7 +108,6 @@ class ScreensController extends StatelessWidget {
         ),
       ),
     );
-    // return HomePage();
   }
 }
 
@@ -131,7 +151,6 @@ class UserScreenController extends StatelessWidget {
     }
   }
 }
-//TODO Refactor code as much possible
 
 // Start-up logo screen for the app
 // Sign in page required (user sign up and business sign up). You need to link database with user sign up and business sign up.
