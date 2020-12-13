@@ -43,14 +43,116 @@ class IntroScreen1 extends StatelessWidget {
     return Scaffold(
       backgroundColor: cyan,
       body: Center(
-        child: RaisedButton(
-          splashColor: cyan,
-          padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
-          autofocus: true,
-          color: white,
-          child: Text('Get Started'.toUpperCase()),
-          onPressed: () => changeScreen(context, ScreensController()),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'My App',
+              style: TextStyle(
+                  fontSize: 25.0, fontWeight: FontWeight.bold, color: white),
+            ),
+            RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(48.0),
+                  side: BorderSide(color: black)),
+              splashColor: cyan,
+              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 80.0),
+              autofocus: true,
+              color: white,
+              child: Text('Get Started'),
+              onPressed: () => changeScreen(context, IntroScreen2()),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class IntroScreen2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/second_page.png',
+            fit: BoxFit.cover,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              RaisedButton(
+                splashColor: cyan,
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 90.0),
+                autofocus: false,
+                color: green,
+                child: Text('Male'.toUpperCase()),
+                onPressed: () => changeScreen(context, IntroScreen3()),
+              ),
+              RaisedButton(
+                splashColor: cyan,
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 90.0),
+                autofocus: true,
+                color: white,
+                child: Text('Female'.toUpperCase()),
+                onPressed: () => changeScreen(context, IntroScreen3()),
+              ),
+              RaisedButton(
+                splashColor: cyan,
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 90.0),
+                autofocus: true,
+                color: yellow,
+                child: Text('Other'.toUpperCase()),
+                onPressed: () => changeScreen(context, IntroScreen3()),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class IntroScreen3 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/third_page.jpg',
+            fit: BoxFit.fill,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Are you a Business Owner?',
+                style: TextStyle(
+                    fontSize: 30.0, fontWeight: FontWeight.bold, color: white),
+              ),
+              RaisedButton(
+                splashColor: cyan,
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                autofocus: true,
+                color: white,
+                child: Text('Yes'.toUpperCase()),
+                onPressed: () => changeScreen(context, AdminScreenController()),
+              ),
+              RaisedButton(
+                splashColor: cyan,
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                autofocus: true,
+                color: yellow,
+                child: Text('No'.toUpperCase()),
+                onPressed: () => changeScreen(context, ScreensController()),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
@@ -66,43 +168,29 @@ class ScreensController extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              alignment: Alignment.center,
+              alignment: Alignment.topCenter,
               child: Image.asset(
-                "assets/nidus.jpg",
-                width: 280.0,
+                "assets/ecommerce.jpg",
+                width: 350.0,
+                height: 400.0,
               ),
             ),
-            SizedBox(
-              height: 50,
-            ),
+            SizedBox(height: 5),
             RaisedButton(
-              padding: EdgeInsets.all(40),
+              padding: EdgeInsets.all(30),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0),
-                  side: BorderSide(color: Colors.amber)),
-              onPressed: () {
-                changeScreen(context, AdminScreenController());
-              },
-              color: Colors.red,
-              textColor: Colors.white,
-              child: Text("Business".toUpperCase(),
-                  style: TextStyle(fontSize: 14)),
-            ),
-            SizedBox(height: 50),
-            RaisedButton(
-              padding: EdgeInsets.all(40),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                  side: BorderSide(color: Colors.red)),
+                  side: BorderSide(color: black)),
               onPressed: () {
                 changeScreenReplacement(context, UserScreenController());
               },
-              color: Colors.red,
+              color: black,
               textColor: Colors.white,
-              child: Text("User".toUpperCase(), style: TextStyle(fontSize: 14)),
+              child: Text("User".toUpperCase(),
+                  style: TextStyle(fontSize: 14, color: white)),
             ),
           ],
         ),
@@ -151,12 +239,3 @@ class UserScreenController extends StatelessWidget {
     }
   }
 }
-
-// Start-up logo screen for the app
-// Sign in page required (user sign up and business sign up). You need to link database with user sign up and business sign up.
-// Once user sign in, home screen.
-// 5 icons required at bottom bar of home screen. When click on any icon, will open another page.
-// Also require option bar/list for profile page , two other pages, dashboard and log out option
-// Display some images (products) on home screen and when some one click the image, it will open another page describing the product.
-// On the product page, there should be a button. When someone click the button, it will popup the promo code and QR code for the product.
-// Built-in QR code reader
